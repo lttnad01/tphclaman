@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'nghang:homepage' %}">Trang Chủ</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'nghang:all-post' %}">Tin Tức</a></li>
+                <li class="breadcrumb-item active">{{object.postname}}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!--Start Post-->
+    <div class="product-view">
+        <div class="row">
+           
+            <div class="col-sm-8">
+                <div class="post-container">
+                    <h1 class="newspaper-title">{{object.postname}}</h1>
+                    <article class="main-article">
+                        <h3 class="post-time">{{object.date}}</h3>
+                        <p class="post-p">{{object.postcontent|safe}}</p>
+                    </article>
+                    <a class="btn-floating btn btn-tw" type="button" role="button" title="Share on facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparse.com" target="_blank" rel="noopener">
+                        <i class="fab fa-2x fa-facebook-square"></i>
+                    </a>
+                </div>
+            </div>
+            
+
+            <div class="col-sm-4">
+                <h2>Bài viết mới nhất</h2>
+                <div class="content-wrapper">
+                    {% for npost in newposts%}
+                    <div class="news-card">
+                        <a href="{% url 'nghang:post-detail' npost.slug%}" class="news-card__card-link"></a>
+                        <img src="{{npost.postimage.url}}" alt="" class="news-card__image">
+                        <div class="news-card__text-wrapper">
+                            <h2 class="news-card__title">
+                                {{npost.postname}}
+                            </h2>
+                            <div class="news-card__post-date">{{npost.date}}</div>
+                            <div class="news-card__details-wrapper">
+                                <div class="post-p">
+                                <p class="news-card__excerpt">{{npost.postcontent|truncatewords_html:30|safe }}</p>
+                                </div>
+                                <a href="{% url 'nghang:post-detail' npost.slug%}" class="news-card__read-more">Đọc thêm <i class="fas fa-long-arrow-alt-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Post-->
+
+{% endblock content%}

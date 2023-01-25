@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Main Slider Start -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <nav class="navbar bg-light">
+                        <ul class="navbar-nav">
+                            <h2>Ngành Hàng</h2>
+                            {% for nghang in nghangs %}
+                             <li class="nav-item">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><img class='nghang' src='{{nghang.ngicon.url}}'  width="20px" height="20px"> {{nghang.ngname}}</a>
+                                
+                                <div class="dropdown-menu">
+                                    {% for prod in nghang.lk_nghang.all %}
+                                     <a href="{% url 'nghang:product-detail' prod.slug %}" class="dropdown-item">{{ prod.prname }}</a>
+                                     {%empty%}
+                                      <p>Không có sản phẩm </p>
+                                    {% endfor %}
+                                </div>
+                                
+                             </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6">
+                    <div class="header-slider normal-slider">
+                        {% for ad in ads%}
+                        <div class="header-slider-item">
+                            <img src="{{ad.postimage.url}}" alt="Slider Image" />
+                            <div class="header-slider-caption">
+                                <p>{{ad.postname}}</p>
+                                <a class="btn" href="{% url 'nghang:post-detail' ad.slug %}">Chi Tiết</a>
+                            </div>
+                        </div>
+                       {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="header-img">
+                        <div class="img-item">
+                            <div class="remotal">
+                                <a href="#"><span>KHÔNG</span></a>
+                              </div>
+                              
+                              <!--- Slogan code starts here -->
+                              <div class="text-rotator">
+                                <div class="slogan">
+                                  <ul>
+                                    <li class="first"><span>Sấy Lưu Huỳnh</span></li>
+                                    <li><span>Thuốc Bảo Vệ Thực Vật</span></li>
+                                    <li><span>Chất Bảo Quản</span></li>
+                                    <li><span>Phân Bón Hóa Học</span></li>
+                                    
+                                  </ul>
+                                </div>
+                              </div>
+                              <!--- Slogan code ends here -->
+                              
+                                
+                                {% comment %} <p class="slogan"> 🔰 KHÔNG Phân Bón Hóa Học</br>
+                                🔰 KHÔNG Thuốc Bảo Vệ Thực Vật</br>
+                                🔰 KHÔNG Chất Bảo Quản</br>
+                                🔰 KHÔNG Sấy Lưu Huỳnh</p> {% endcomment %}
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Slider End -->
+
+
+    <!-- Feature Start-->
+    <div class="feature">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h2> Uy tín</h2>
+                        <p>
+                            Hỗ trợ đặt hàng nhanh chóng
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fas fa-map-marked"></i>
+                        <h2>Tận tình</h2>
+                        <p>
+                            Nguồn gốc sản phẩm rõ ràng
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fas fa-archive"></i>
+                        <h2>Chuyên nghiệp</h2>
+                        <p>
+                            Đóng gói, giao hàng tiêu chuẩn
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fas fa-laugh-beam"></i>
+                        <h2>
+                            Hạnh phúc</h2>
+                        <p>
+                            Trao đi thức ăn ngon, bổ dưỡng
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End-->
+
+    <!-- Category Start-->
+    <div class="category">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <div class="category-item ch-400">
+                        <video controls>
+                            <source src="{% static 'img/vid01.mp4' %}" type="video/mp4">
+                           
+                          </video>
+
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-item ch-250">
+                        <img src="{% static 'img/ad0201.jpg' %}" />
+                        <a class="category-name" href="">
+                            <p> Trà táo đỏ, kỷ tử </p>
+                        </a>
+                    </div>
+                    <div class="category-item ch-150">
+                        <img src="{% static 'img/ad0205.jpg' %}" />
+                        <a class="category-name" href="">
+                            <p>Hắc Kỷ Tử - Món quà quý giá từ thiên nhiên</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-item ch-150">
+                        <img src="{% static 'img/ad0204.jpg' %}" />
+                        <a class="category-name" href="">
+                            <p>Kỷ tử hữu cơ Ninh Hạ </p>
+                        </a>
+                    </div>
+                    <div class="category-item ch-250">
+                        <img src="{% static 'img/ad0203.jpg' %}" />
+                        <a class="category-name" href="">
+                            <p>Táo đỏ Nhược Khương Tân Cương</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-item ch-400">
+                        <img src="{% static 'img/ad0202.jpg' %}" />
+                        <a class="category-name" href="">
+                            <p>Táo Mỹ Nữ Tân Cương - Trái to, hạt nhỏ, dài tới 6cm</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Category End-->
+
+    <!-- Featured Product Start -->
+    <div class="featured-product product">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h1>Sản Phẩm Bán Chạy</h1>
+            </div>
+            <div class="row align-items-center product-slider product-slider-4">
+                {% for prod in hot %}
+                <div class="col-lg-3">
+                    <div class="product-item">
+                        <div class="product-title">
+                            <a href="{% url 'nghang:product-detail' prod.slug %}">{{ prod.prname }}</a>
+                        </div>
+                        <div class="product-image">
+                            <a href="product-detail.html">
+                                <img src="{{prod.primage.url}}" alt="Product Image">
+                            </a>
+                            <div class="product-action">
+                                <a href="{% url 'nghang:product-detail' prod.slug %}"><i class="fas fa-info-circle"></i></a>
+                         
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <h3><span></span>{{prod.price}} VND</h3>
+                            <a class="btn" href="{% url 'nghang:product-detail' prod.slug %}"><i class="fas fa-info-circle"></i>Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Featured Product End -->
+
+
+
+    <!-- Recent Product Start -->
+    <div class="recent-product product">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h1>Sản phẩm mới</h1>
+            </div>
+            <div class="row align-items-center product-slider product-slider-4">
+                
+                {% for newprod in new %}
+                <div class="col-lg-3">
+                    <div class="product-item">
+                        <div class="product-title">
+                            <a href="{% url 'nghang:product-detail' newprod.slug %}">{{newprod.prname}}</a>
+                            
+                        </div>
+                        <div class="product-image">
+                            <a href="product-detail.html">
+                                <img src="{{newprod.primage.url}}" alt="Product Image">
+                            </a>
+                            <div class="product-action">
+                                
+                                <a href="{% url 'nghang:product-detail' newprod.slug %}"><i class="fas fa-info-circle"></i></a>
+                          
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <h3><span></span>{{newprod.price}}</h3>
+                            <a class="btn" href="{% url 'nghang:product-detail' newprod.slug %}"><i class="fa fa-shopping-cart"></i>Chi Tiết</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <!-- Recent Product End -->
+   
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/sl.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static%}
+{% block content %}
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'nghang:homepage' %}">Trang Chủ</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'nghang:all-product' %}">Sản Phẩm</a></li>
+                <li class="breadcrumb-item active">{{product.prname}}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Product Detail Start -->
+    <div class="product-detail">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="product-detail-top">
+                        <div class="row align-items-center">
+                            <div class="col-md-5">
+                                
+                                <div class="product-slider-single normal-slider">
+                                    {% for imgs in object.lk_product.all %}
+                                    <img src="{{imgs.imgname.url}}" alt="Product Image">
+                                    {% empty%}
+                                    <p> No image </p>
+                                    {% endfor %}    
+                                </div>
+                                <div class="product-slider-single-nav normal-slider">
+                                    {% for imgs in object.lk_product.all %}
+                                    <div class="slider-nav-img"><img src="{{imgs.imgname.url}}" alt="Product Image"></div>
+                                    
+                                    {% endfor %} 
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="product-content ">
+                                    <div class="title ">
+                                        <h2>{{object.prname}}</h2>
+                                    </div>
+
+                                    <div class="price ">
+                                        <h4>Giá:</h4>
+                                        <p>{{object.price}} VNĐ </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row product-detail-bottom ">
+                        <div class="col-lg-12 ">
+
+                            <div class="tab-content ">
+                                <div id="description " class="container tab-pane active ">
+                                    <h4>Mô tả</h4>
+                                    <p>
+                                        {{object.prcontent | safe }}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product ">
+                        <div class="section-header ">
+                            <h1>Sản phẩm liên quan</h1>
+                        </div>
+
+                        <div class="row align-items-center product-slider product-slider-3 ">
+                            {% for reprod in related_products%}
+                            <div class="col-lg-3 ">
+                                <div class="product-item ">
+                                    <div class="product-title ">
+                                        <a href="# ">{{reprod.prname}}</a>
+                                        
+                                    </div>
+                                    <div class="product-image ">
+                                        <a href="product-detail.html ">
+                                            <img src="{{reprod.primage.url}}" alt="Product Image ">
+                                        </a>
+                                        <div class="product-action ">
+                                            <a href="{% url 'nghang:product-detail' reprod.slug %}"><i class="fas fa-info-circle"></i></a>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="product-price ">
+                                        <h3><span></span>{{reprod.price}}</h3>
+                                        <a class="btn" href="{% url 'nghang:product-detail' reprod.slug %}"><i class="fa fa-shopping-cart"></i>Chi Tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Side Bar Start -->
+                <div class="col-lg-4 sidebar ">
+                    <div class="sidebar-widget category ">
+
+                        <nav class="navbar bg-light ">
+                            <ul class="navbar-nav ">
+                                <h2>Ngành Hàng</h2>
+                                {% for nghang in nghangs %}
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><img class='nghang' src='{{nghang.ngicon.url}}'  width="20px" height="20px"> {{nghang.ngname}}</a>
+                                    
+                                    <div class="dropdown-menu">
+                                        {% for prod in nghang.lk_nghang.all %}
+                                        <a href="{% url 'nghang:product-detail' prod.slug %}" class="dropdown-item">{{ prod.prname }}</a>
+                                        {%empty%}
+                                        <p>Không có sản phẩm </p>
+                                        {% endfor %}
+                                    </div>
+                                    
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Side Bar End -->
+            </div>
+        </div>
+    </div>
+    <!-- Product Detail End -->
+{% endblock content%}

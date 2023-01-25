@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'nghang:homepage' %}">Trang Chủ</a></li>
+                <li class="breadcrumb-item active">Sản Phẩm</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Product List Start -->
+    <div class="product-view">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        
+                        {% for product in object_list %}
+                        <div class="col-md-4">
+                            <div class="product-item">
+                                <div class="product-title">
+                                    <a href="product-detail.html">{{product.prname}}</a>
+                                    
+                                </div>
+                                <div class="product-image">
+                                    <a href="product-detail.html">
+                                        <img src="{{product.primage.url}}" alt="Product Image">
+                                    </a>
+                                    <div class="product-action">
+                                        <a href="{% url 'nghang:product-detail' product.slug %}"><i class="fas fa-info-circle"></i></a>
+                                       
+                                    </div>
+                                </div>
+                                <div class="product-price">
+                                    <h3><span></span>{{product.price}} VND</h3>
+                                    <a class="btn" href="{% url 'nghang:product-detail' product.slug %}"><i class="fas fa-info-circle"></i>Chi Tiết</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <!-- Pagination Start -->
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                           
+                                {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Trước</a></li>
+                                {% else %}
+                                <li class="page-item disabled"></li>
+                                {% endif %}
+
+                                {% for pages in page_obj.paginator.page_range %}
+                                 {% if page_obj.number == pages %}
+                                    <li class="page-item active"><a class="page-link" href="#">{{pages}}</a></li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{pages}}">{{pages}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                 <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Tiếp theo</a>
+                                 </li>
+                                {% else %}
+                                <li class="page-item disabled"></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Pagination End -->
+                </div>
+
+                <!-- Side Bar Start -->
+                <div class="col-lg-4 sidebar">
+                    <div class="sidebar-widget category">
+
+                        <nav class="navbar bg-light">
+                            <ul class="navbar-nav">
+                                <h2>Ngành Hàng</h2>
+                                {% for nghang in nghangs %}
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><img class='nghang' src='{{nghang.ngicon.url}}'  width="20px" height="20px"> {{nghang.ngname}}</a>
+                                
+                                    <div class="dropdown-menu">
+                                        {% for prod in nghang.lk_nghang.all %}
+                                         <a href="#" class="dropdown-item">{{ prod.prname }}</a>
+                                         {%empty%}
+                                          <p>Không có sản phẩm </p>
+                                        {% endfor %}
+                                    </div>
+                                </li>
+                                {% endfor %}
+                                
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Side Bar End -->
+            </div>
+        </div>
+    </div>
+    <!-- Product List End -->
+{% endblock content %}

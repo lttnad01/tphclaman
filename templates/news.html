@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content%}
+
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'nghang:homepage' %}">Trang Chủ</a></li>
+                <li class="breadcrumb-item active">Tin Tức</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!--Start News-->
+
+    <div class="content-wrapper">
+        {% for post in object_list%}
+        <div class="news-card">
+            <a href="{% url 'nghang:post-detail' post.slug %}" class="news-card__card-link"></a>
+            <img src="{{post.postimage.url}}" alt="" class="news-card__image">
+            <div class="news-card__text-wrapper">
+                <h2 class="news-card__title">
+                    {{post.postname}}
+                </h2>
+                <div class="news-card__post-date">{{post.date}}</div>
+                <div class="news-card__details-wrapper">
+                    <p class="news-card__excerpt">{{post.postcontent|truncatewords_html:30|safe }}</p>
+                    <a href="{% url 'nghang:post-detail' post.slug %}" class="news-card__read-more">Đọc thêm <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!--End News-->
+    
+
+
+     <!-- Pagination Start -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                           
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Trước</a></li>
+                {% else %}
+                <li class="page-item disabled"></li>
+                {% endif %}
+
+                {% for pages in page_obj.paginator.page_range %}
+                 {% if page_obj.number == pages %}
+                    <li class="page-item active"><a class="page-link" href="#">{{pages}}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{pages}}">{{pages}}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                 <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Tiếp theo</a>
+                 </li>
+                {% else %}
+                <li class="page-item disabled"></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    <!-- Pagination End -->
+ 
+{% endblock %}

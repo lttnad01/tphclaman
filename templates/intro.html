@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static%}
+{% block content %}
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'nghang:homepage' %}">Trang Chủ</a></li>
+                <li class="breadcrumb-item active">Giới Thiệu</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+   
+<!-- Half banner with mask -->
+<section class="half-banner-mask white-text" style="background-color:white;">
+   
+    <div class="container-fluid">
+        <div class="row grey-bg">
+            <div class="col-sm-5 my-auto banner-text-container banner-text-container--outer order-2 order-sm-1">
+                <div class="banner-text-container banner-text-container--inner">
+                    <h1 class="banner-heading text-center">Hạnh phúc giản đơn từ thức ăn bổ dưỡng</h1>
+
+                    <div class="mustard-hr d-block d-sm-none"></div>
+                    <p class="banner-text text-center">Ai đó đã nói khi ăn ngon chúng ta sẽ cảm thấy được chăm sóc và yêu thương đủ đầy. Vì vậy lựa chọn cung cấp những thực phẩm an lành và bổ dưỡng là một cách truyền đi thông điệp chăm sóc từ Thực phẩm hữu cơ Lâm An đến các khách hàng đã tin tưởng.</p>
+                   
+                </div>
+            </div>
+            <div class="col-sm-7 image order-1 order-sm-2"
+                 style="background-image: url('https://vnn-imgs-f.vgcloud.vn/2021/12/21/09/cong-dung-tuyet-voi-cua-tao-do-han-quoc.jpg')">
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Half banner with mask -->
+
+<!-- Half banner with mask and two columns paragraph -->
+<section class="half-banner-mask white-text" style="background-color:white;">
+    
+    <div class="container-fluid" >
+        <div class="row grey-bg">
+            <div class="col-sm-5 my-auto banner-text-container banner-text-container--outer banner-list-container order-2 order-sm-1">
+                <div class="banner-text-container banner-text-container--inner banner-list-container">
+                    <h1 class="banner-heading text-center">MUỐN LỜI - CHỌN THỰC PHẨM HỮU CƠ LÂM AN</h1>
+
+                    <div class="mustard-hr d-block d-sm-none"></div>
+                    <ul class="banner-list">
+                        <li>1.	Đầy đủ thực phẩm, nông sản sạch cho sức khỏe</li>
+                        <li>2.	Giá thành hợp lý nhất nhì thị trường</li> 
+                        <li>3.	Đặt hàng và giao hàng dễ dàng</li>
+                        <li>4.	Đảm bảo đóng gói theo tiêu chuẩn</li>
+                        <li>5.	Chính sách tốt cho khách hàng thân quen</li>
+                       
+                    </ul>
+                   
+                </div>
+            </div>
+            <div class="col-sm-7 image order-1 order-sm-2"
+                 style="background-image: url('https://i.ibb.co/0tyZ0w3/light-grey-mask.png'), url('https://i.ibb.co/zVnvzmm/couple-buying-new-house.jpg')">
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Half banner with mask and two columns paragraph -->
+
+<!-- Half banner with mask -->
+<section class="half-banner-mask white-text" style="background-color:white;">
+    
+    <div class="container-fluid">
+        <div class="row grey-bg">
+            <div class="col-sm-5 my-auto banner-text-container banner-text-container--outer order-2 order-sm-1">
+                <div class="banner-text-container banner-text-container--inner">
+                    <h1 class="banner-heading text-center">TẠI SAO NÊN CHỌN THỰC PHẨM HỮU CƠ LÂM AN?</h1>
+
+                    <div class="mustard-hr d-block d-sm-none"></div>
+                    <p class="banner-text text-center">Chúng tôi am hiểu và đón đầu các xu hướng chăm sóc sức khỏe từ nông sản và nguyên liệu tươi ngon hàng đầu Việt Nam.</p>
+                   
+                </div>
+            </div>
+            <div class="col-sm-7 image order-1 order-sm-2"
+                 style="background-image: url('https://i.ibb.co/0tyZ0w3/light-grey-mask.png'), url('https://i.ibb.co/MPtT0Ys/portrait-of-young-couple-moving-in-new-home.jpg')">
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Half banner with mask -->
+
+
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/intro.js' %}"></script>
+{% endblock %}

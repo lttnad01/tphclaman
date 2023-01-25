@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content%}
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'nghang:homepage' %}">Trang Chủ</a></li>
+                <li class="breadcrumb-item active">Liên Hệ</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Contact Start -->
+    <div class="contact">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <h2>Địa Chỉ</h2>
+                        {% for add in contact %}
+                        <h3><i class="fa fa-map-marker"></i>{{add.address}}</h3>
+                        {% endfor %}
+                        {% for pnum in contact %}
+                        <h3><i class="fa fa-phone"></i>{{pnum.phone}}</h3>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <h2>Follow Us</h2>
+                        <div class="social">
+                            <a href="https://www.facebook.com/hclaman/"><i class="fab fa-facebook-f"></i></a>
+                            <p>Facebook: Thực Phẩm Hữu Cơ Lâm An</p>
+                            </br>
+                            <a href="https://shopee.vn/taodotancuong"><i class="fab fa-shopify"></i></a>
+                            <p>Shopee: Thực Phẩm Hữu Cơ Lâm An</p>
+                            </br>
+                            <a href="https://www.tiktok.com/@tphclaman"><i class="fab fa-tiktok"></i></a>
+                            <p>TikTok: Thực Phẩm Hữu Cơ Lâm An</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="contact-map">
+                        {% for map in contact %}
+                        <iframe src="{{map.mymap}}"
+                            frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+{% endblock content%}
